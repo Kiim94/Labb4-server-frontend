@@ -1,0 +1,150 @@
+*{
+  box-sizing: border-box;
+}
+.hidden{
+  display:none;
+}
+/*body och main utseende för login och registrering*/
+body.logReg{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:rgb(249, 229, 194);
+  margin: 0;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  height: 100vh;
+  main{
+    background: rgb(252, 247, 238);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+}
+
+/*body och main utseende för övriga sidor*/
+body.page{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(249, 229, 194);
+  main{
+    background: rgb(252, 247, 238);
+    padding: 2rem;
+    border-radius: 10px;
+    margin:2rem auto;
+    width:100%;
+    max-width:900px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+}
+
+input{
+  width: 100%;
+  padding:0.5rem;
+  margin:0.6rem 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.button-wrapper{
+  display:flex;
+  justify-content:center;
+  gap:2rem;
+}
+
+/*Universallt knapp utseende*/
+button{
+  width:100%;
+  max-width:300px;
+  padding: 0.5rem;
+  background-color:rgb(174, 151, 109);
+  color: white;
+  font-weight:bold;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  box-sizing:border-box;
+}
+button:hover{
+  background: rgb(114, 99, 72);
+}
+
+h1,h2{
+  margin-bottom:1rem;
+  text-align:center;
+}
+#output, #showText{
+  margin-top:1rem;
+  padding: 0.7rem 1rem;
+  border-radius:8px;
+  font-size:0.9rem;
+  text-align:center;
+}
+.error{
+  color:red;
+}
+.success{
+  color: green;
+}
+span{
+  font-size:3rem;
+}
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0.5rem 1rem;
+  background: rgb(252, 247, 238);
+  border-radius:10px;
+  margin-bottom:20px;
+  ul{
+    list-style-type:none;
+    display:flex;
+    gap:2rem;
+    padding:0;
+    margin:0;
+    a{
+      text-decoration:none;
+      color:black;
+      padding:6px 10px;
+    }
+    .active a{
+      background-color:#333;
+      color:white;
+      border-radius:10px;
+    }
+  }
+}
+
+#profile{
+  background-color: rgb(252,247,238);
+  padding:2rem;
+  border-radius:15px;
+  max-width:500px;
+  margin:1rem auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  h2{
+    margin-top:0;
+    margin-bottom:1rem;
+    font-size:1.5rem;
+  }
+  p{
+    margin:1.3rem 0;
+    font-size:1rem;
+  }
+  strong{
+    display:inline-block;
+    max-width:90px;
+    width:100%;
+    color:#333;
+  }
+}
+#loginLink{
+  display:block;
+  box-sizing:border-box;
+  margin-top:2rem;
+}
+.logOut{
+  max-width:100px;
+}
+

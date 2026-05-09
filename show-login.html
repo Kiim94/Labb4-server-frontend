@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labb4 - logga in/authorization</title>
+</head>
+<body class="page">
+    <main>
+        <header class="top-bar">
+            <nav>
+                <ul>
+                    <li class="active"><a href="show-login.html">Min sida</a></li>
+                    <li><a href="user-only-page.html">Extra sida</a></li>
+                </ul>
+            </nav>
+            <button id="logoutBtn" class="logOut">Logga ut</button>
+        </header>
+        
+        <h1>Min sida</h1>
+        <p style="text-align:center;">Välkommen!</p>
+        <p style="text-align:center;">Nedan är ditt användarnamn och email som du registrerade med. </p>
+        <div id="profile"></div>
+        <pre id="output"></pre>
+        <div class="button-wrapper">
+            
+            <button id="delete">Radera användare</button>
+        </div>
+        
+    </main>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
