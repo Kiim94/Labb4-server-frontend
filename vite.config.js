@@ -6,7 +6,8 @@ export default defineConfig({
       input: {
         main: "index.html",
         register: "register.html",
-        login: "show-login.html"
+        login: "show-login.html",
+        user: "user-only-page.html"
       }
     }
   }
