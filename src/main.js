@@ -16,28 +16,28 @@ window.addEventListener("DOMContentLoaded", () => {
   //visade bland annat login + användaruppgifter när extra sida lades till - ajaj
   const path = window.location.pathname;
   const token =getToken();
-  if(path.includes("index.html") || path === "/"){
+  if(path.includes("index") || path === "/"){
     initLogin();
   }
 
   //om man skulle försöka ta sig in på länken nedan så kontrolleras token.
   //är man inloggad: fungerar. Ej inloggad, redirect till index.html
-  if(path.includes("user-only-page.html")){
+  if(path.includes("user-only-page")){
     if(!token){
-      window.location.href ="index.html";
+      window.location.href ="index";
       return;
     }
     loadWelcome();
   }
 
   //från login.js: funktion för att skapa en ny användare
-  if(path.includes("register.html")){
+  if(path.includes("register")){
     initRegister();
   }
   updateUI();
 
   //om idt profile hittas, ladda profil (hämta info från webbserver, visa på webbplats)
-  if(path.includes("show-login.html") && token){
+  if(path.includes("show-login") && token){
     loadProfile();    
   }
 })
@@ -46,14 +46,14 @@ window.addEventListener("DOMContentLoaded", () => {
 if(logoutBtn){
   logoutBtn.addEventListener("click", () => {
     logout();
-    window.location.href ="index.html";
+    window.location.href ="index";
   })
 }
 
 //registrera användare -> gå till ny sida för registrering
 if(registerBtn){
   registerBtn.addEventListener("click", () => {
-    window.location.href = "register.html";
+    window.location.href = "register";
   })
 }
 
@@ -125,6 +125,7 @@ async function loadProfile() {
 
 //liten funktion för att välkomna användare vid namn till den extra sidann
 async function loadWelcome(){
+  console.log("LoadWelcome körs");
   const token = getToken();
   const welcome = document.getElementById("welcome");
 
@@ -177,6 +178,6 @@ if(deleteUser){
     }
     //när användare raderas: skickas automatiskt till startsida: token tas bort från sessionStorage (se auth.js)
     logout();
-    window.location.href = "index.html"
+    window.location.href = "index"
   }
 }
