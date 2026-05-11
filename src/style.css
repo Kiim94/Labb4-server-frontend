@@ -88,6 +88,9 @@ h1,h2{
 .success{
   color: green;
 }
+#welcome{
+  font-weight:bold;
+}
 span{
   font-size:3rem;
 }

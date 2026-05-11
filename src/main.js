@@ -19,6 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if(path.includes("index.html") || path === "/"){
     initLogin();
   }
+
   //om man skulle försöka ta sig in på länken nedan så kontrolleras token.
   //är man inloggad: fungerar. Ej inloggad, redirect till index.html
   if(path.includes("user-only-page.html")){
@@ -26,11 +27,16 @@ window.addEventListener("DOMContentLoaded", () => {
       window.location.href ="index.html";
       return;
     }
+    loadWelcome();
   }
+
+  //från login.js: funktion för att skapa en ny användare
   if(path.includes("register.html")){
     initRegister();
   }
   updateUI();
+
+  //om idt profile hittas, ladda profil (hämta info från webbserver, visa på webbplats)
   if(document.getElementById("profile")){
     loadProfile();    
   }
@@ -52,9 +58,13 @@ if(registerBtn){
 }
 
 //uppdater ui så man ser om man är inloggad eller inte
+//inte strikt nödvändig som den ser ut nu: används egentligen inte
+//men behåller då den kan vara nyttig i framtiden
+//t.ex.: icke inloggad kan se delvist innehåll men måste logga in för att se helheten/interagera
 function updateUI(){
   const token = getToken();
 
+  //om token finns, lägg till så loginknapp är hidden, gör logga ut knappen synlig
   if(token){
     if(loginBtn) loginBtn.classList.add("hidden");
     if(logoutBtn) logoutBtn.classList.remove("hidden");
@@ -64,19 +74,11 @@ function updateUI(){
   }
 }
 
-
 async function loadProfile() {
     const token = getToken();
     const profile =document.getElementById("profile");
     
-    if(!token){
-      //output = på index.html: visa om man är inloggad eller ej
-      if(output){
-        output.classList.add("error");
-        output.innerText = "Inte inloggad";
-      }
-        return;
-    }
+    if(!token) return;
     if(!profile) return;
 
     try{
@@ -99,14 +101,16 @@ async function loadProfile() {
             return;
         }
         const user = data.user;
+
         //fixa så datum för skapande av användarkonto syns i år, månad, dag
         const createDate = new Date(data.user.createdAt).toLocaleDateString("sv-SE");
+        
         //lite info om användaren: användarnamn, email, när användarkontot skapades
         profile.innerHTML = `
         <h2>Din profil</h2>
         <p><strong>Username:</strong> ${user.username}</p>
-        <p><strong>Created:</strong> ${createDate}</p>
         <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Created:</strong> ${createDate}</p>
         `;
         if(output){
           output.innerText = "";
@@ -118,6 +122,25 @@ async function loadProfile() {
       } 
     }
 }
+
+//liten funktion för att välkomna användare vid namn till den extra sidan
+async function loadWelcome(){
+  const token = getToken();
+  const welcome = document.getElementById("welcome");
+
+  if(!token || !welcome) return;
+
+  const res = await fetch("https://labb4-webbserver.onrender.com/api/auth/profile", {
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  });
+  if(!res.ok) return;
+  const data = await res.json();
+  welcome.innerText  =`Hej, ${data.user.username}! 😄`
+}
+
+
 //radera användare
 if(deleteUser){
   deleteUser.addEventListener("click", deleteProfile);
@@ -152,7 +175,7 @@ if(deleteUser){
         output.innerText = "Serverfel";
       }
     }
-    
+    //när användare raderas: skickas automatiskt till startsida: token tas bort från sessionStorage (se auth.js)
     logout();
     window.location.href = "index.html"
   }

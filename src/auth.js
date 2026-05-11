@@ -1,4 +1,8 @@
-//token sparas tillfälligt i sessionStorage. SessionStorage slutar vara giltig när man stänger webbläsare/fönstret
+//js för authentication: skapa, spara, radera token
+//token för att visa att användaren är inloggad/kan se sidor endast tillgängliga när man är inloggad
+
+//token sparas tillfälligt i sessionStorage. 
+//token i sessionStorage slutar vara giltig när man stänger webbläsare/fönstret
 export function setToken(token){
     sessionStorage.setItem("token", token);
 }
