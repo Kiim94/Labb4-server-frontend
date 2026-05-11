@@ -136,7 +136,10 @@ async function loadWelcome(){
       "Authorization": "Bearer " + token
     }
   });
-  if(!res.ok) return;
+  if(!res.ok) {
+    console.log("Det gick inte att hämta profilen:", res.status);
+    return;
+  }
   const data = await res.json();
   welcome.innerText  =`Hej, ${data.user.username}! 😄`
 }
