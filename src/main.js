@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", () => {
   updateUI();
 
   //om idt profile hittas, ladda profil (hämta info från webbserver, visa på webbplats)
-  if(document.getElementById("profile")){
+  if(path.includes("show-login.html") && token){
     loadProfile();    
   }
 })
@@ -123,7 +123,7 @@ async function loadProfile() {
     }
 }
 
-//liten funktion för att välkomna användare vid namn till den extra sidan
+//liten funktion för att välkomna användare vid namn till den extra sidann
 async function loadWelcome(){
   const token = getToken();
   const welcome = document.getElementById("welcome");
